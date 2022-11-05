@@ -19,6 +19,9 @@ export class Coffee {
   @Column()
   brand: string;
 
+  @Column({ default: 0 })
+  recommendations: number;
+
   @JoinTable()
   @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
     // dzięki temu jak będziemy dodawać kawe ze smakiem który nie istnieje w tabeli, to zostanie on dodany do tabeli smaków
