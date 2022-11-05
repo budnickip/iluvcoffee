@@ -1,0 +1,1 @@
+common folder dotyczy rzeczy, które nie nalezą do zadnej domeny i mogą być reuzywane przez wiele kontrolerów
