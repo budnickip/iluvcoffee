@@ -16,9 +16,12 @@ export class Coffee {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Index() // jeśli bardzo częstym przypadkiem będzie wyszukiwanie kawy po name, to warto dodac index decorator - to przyspieszy wyszukiwanie po tej kolumnie
+  @Index() // jeśli bardzo częstym przypadkiem będzie wyszukiwanie kawy po name(teraz title, bo sprawdzałem działanie migracji), to warto dodac index decorator - to przyspieszy wyszukiwanie po tej kolumnie
   @Column()
   name: string;
+
+  @Column({ nullable: true })
+  description?: string;
 
   @Column()
   brand: string;
