@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 
 @Module({
   // forRoot tylko raz, forFeatures za kazdym razem jak importujemy entity do modułu
@@ -20,6 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       // this automatic synchronization saves us a lot of manual coding that we'd have to do otherwise while actively developing our applications
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
+    CoffeeRatingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
