@@ -6,16 +6,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
+import appConfig from './config/app.config';
 
 @Module({
   // forRoot tylko raz, forFeatures za kazdym razem jak importujemy entity do modułu
   imports: [
+    // ConfigModule.forRoot({
+    //   // dzięki temu i Joiowi, jak nie będzie któregoś z wymaganych pól, to konsola rzuci błędem i powie którego pola brakuje
+    //   validationSchema: Joi.object({
+    //     DATABASE_HOST: Joi.required(),
+    //     DATABASE_PORT: Joi.number().default(543),
+    //   }),
+    // }),
     ConfigModule.forRoot({
-      // dzięki temu i Joiowi, jak nie będzie któregoś z wymaganych pól, to konsola rzuci błędem i powie którego pola brakuje
-      validationSchema: Joi.object({
-        DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(543),
-      }),
+      load: [appConfig], // 👈
     }),
     CoffeesModule,
     TypeOrmModule.forRoot({
