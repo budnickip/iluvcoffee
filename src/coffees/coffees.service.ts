@@ -8,6 +8,8 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor-entity';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
 @Injectable()
 export class CoffeesService {
@@ -17,11 +19,22 @@ export class CoffeesService {
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
+    private readonly configService: ConfigService, // to use env variables
     // something like enums
     // Injecting string-valued token into CoffeesService
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
+    @Inject(coffeesConfig.KEY)
+    private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
   ) {
     console.log(coffeeBrands);
+    // const databaseHost = this.configService.get<string>('DATABASE_HOST'); - get env value
+    // console.log(databaseHost);
+
+    // const foo = this.configService.get('coffees.foo'); - get config value from coffees.config.ts
+    // console.log(foo);
+
+    // Now strongly typed, and able to access properties via: - the best practice
+    // console.log(coffeesConfiguration.foo);
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
