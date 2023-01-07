@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
 
 async function bootstrap() {
@@ -25,7 +26,10 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new HttpExceptionFilter()); // use our custom handling for errors
   // app.useGlobalGuards(new ApiKeyGuard()); // globalne wywołanie guarda, będzie dla kazdej routy // nie potrzebuje od kiedy dodalem to w common.module i zaimportowalem ten modul do app.module
-  app.useGlobalInterceptors(new WrapResponseInterceptor()); // globalnie wywola interceptor dla kazdej routy
+  app.useGlobalInterceptors(
+    new WrapResponseInterceptor(),
+    new TimeoutInterceptor(),
+  ); // globalnie wywola interceptor dla kazdej routy
   await app.listen(3000);
 }
 bootstrap();
