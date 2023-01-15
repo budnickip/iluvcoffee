@@ -6,7 +6,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Flavor } from './flavor-entity';
+import { Flavor } from './flavor.entity';
 
 // Composite index that contains Multiple columns
 // @Index(['name', 'type']) // <--

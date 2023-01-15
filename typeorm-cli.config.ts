@@ -1,5 +1,5 @@
 import { Coffee } from "./src/coffees/entities/coffee.entity";
-import { Flavor } from "./src/coffees/entities/flavor-entity";
+import { Flavor } from "./src/coffees/entities/flavor.entity";
 import { CoffeeRefactor1667687109352 } from "./src/migrations/1667687109352-CoffeeRefactor";
 import { DataSource } from "typeorm";
 import { SchemaSync1667688202242 } from "src/migrations/1667688202242-SchemaSync";
