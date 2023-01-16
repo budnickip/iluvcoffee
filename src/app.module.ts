@@ -18,7 +18,7 @@ import appConfig from './config/app.config';
     //     DATABASE_HOST: Joi.required(),
     //     DATABASE_PORT: Joi.number().default(543),
     //   }),
-    // }),
+    // })
     ConfigModule.forRoot({
       load: [appConfig], // 👈
     }),
